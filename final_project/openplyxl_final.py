@@ -81,12 +81,11 @@ for i in range(6):
     ws.cell(4+i,23).value = "=W{}-4.4+M{}".format(3+i, 4+i)    #GDD
 
 
+week = (int(input("몇주차 자료입니까? =>")))
 
-wb.save('C:/Users/user/Desktop/data/원예작물재배및실습_11주차_4조_dataclear.xlsx')
+wb.save('C:/Users/user/Desktop/data/원예작물재배및실습_{}주차_4조_dataclear.xlsx'.format(week))
 
 #df = pd.read_excel('C:/Users/user/Desktop/data/원예작물재배및실습_11주차_4조_dataclear.xlsx')
 #print(df)
-
-
 
 
