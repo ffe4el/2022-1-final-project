@@ -6,10 +6,11 @@ import numpy as np
 from pathlib import Path
 
 # # 해당이름의 csv파일을 읽어옴
-r_csv = pd.read_csv("C:/Users/user/Desktop/data/feeds.csv")
+r_csv = pd.read_csv("C:/Users/user/OneDrive/바탕 화면/data/feeds.csv")
 # r_csv = r_csv.rename(columns={'field1':'temp'})
 
 # print(r_csv['created_at'])
+week = (int(input("몇주차 자료입니까? =>")))
 start_date = str(input("시작하고자 하는 날짜를 입력해주세요. => "))
 start_day = start_date.split("-")
 start_day1=int(start_day[2])
@@ -20,13 +21,13 @@ rd_csv= r_csv[r_csv['created_at']> '{}'.format(start_date)].copy()
 rd_csv['Date'] = pd.to_datetime(rd_csv['created_at']).dt.normalize()
 # print(rd_csv)
 # # 저장할 xlsx파일의 이름을 정함
-# save_xlsx = pd.read_excel("C:/Users/codka/OneDrive/바탕 화면/data/feedsdhzn.xlsx")
+# save_xlsx = pd.read_excel("C:/Use rs/codka/OneDrive/바탕 화면/data/feeds.xlsx")
 # r_csv.to_excel(save_xlsx, index = False) # xlsx 파일로 변환
 # save_xlsx.save() #xlsx 파일로 저장
 
 
 
-wb = load_workbook("C:/Users/user/Desktop/data/원예작물재배및실습_11주차_4조_형식자료.xlsx")
+wb = load_workbook("C:/Users/user/OneDrive/바탕 화면/data/원예작물재배및실습_11주차_4조_형식자료.xlsx")
 ws = wb.active
 # print(ws.max_row)
 for i in range(2,ws.max_row+1):
@@ -50,7 +51,6 @@ for i, row in rd_csv.iterrows():
     ws.cell(line+2,7).value = "=LEFT(A{}, 10)".format(line+2)
     ws.cell(line + 2, 8).value = "=0.61078*EXP(C{}/(C{}+233.3)*17.2694)".format(line + 2, line + 2)
     ws.cell(line + 2, 9).value = "=H{}*(1-D{}/100)".format(line + 2, line + 2)
-
     line +=1
 for i in range(7):
     ws.cell(3+i,11).value = "2022-06-{}".format(start_day3+i)
@@ -66,7 +66,7 @@ for i in range(7):
     ws.cell(3 + i, 18).value = rd_csv[rd_csv['Date'] == date].max()["field3"]
     ws.cell(3 + i, 20).value = rd_csv[rd_csv['Date'] == date].min()["field3"]
     # ws.cell(3+i,12).value = "=MAXIFS(C:C,G:G,K{})".format(3+i)
-    ws.cell(3+i,13).value                                        = "=AVERAGEIFS(C:C,G:G,K{})".format(3+i)
+    ws.cell(3+i,13).value = "=AVERAGEIFS(C:C,G:G,K{})".format(3+i)
     # ws.cell(3+i,14).value = "=MINIFS(C:C,G:G,K{})".format(3+i)
     # ws.cell(3+i,15).value = "=MAXIFS(D:D,G:G,K{})".format(3+i)
     ws.cell(3+i,16).value = "=AVERAGEIFS(D:D,G:G,K{})".format(3+i)
@@ -81,9 +81,9 @@ for i in range(6):
     ws.cell(4+i,23).value = "=W{}-4.4+M{}".format(3+i, 4+i)    #GDD
 
 
-week = (int(input("몇주차 자료입니까? =>")))
 
-wb.save('C:/Users/user/Desktop/data/원예작물재배및실습_{}주차_4조_dataclear.xlsx'.format(week))
+
+wb.save('C:/Users/user/OneDrive/바탕 화면/data/원예작물재배및실습_{}주차_4조_final.xlsx'.format(week))
 
 #df = pd.read_excel('C:/Users/user/Desktop/data/원예작물재배및실습_11주차_4조_dataclear.xlsx')
 #print(df)
