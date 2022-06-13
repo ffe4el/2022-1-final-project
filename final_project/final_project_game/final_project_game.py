@@ -266,6 +266,7 @@ def success_screen_show():
 def real_final():
     score = sum(total_score)
     global start_ticks
+    global nope
     waiting = True
     pygame.mixer.music.unpause()
     cong.play()
@@ -328,9 +329,13 @@ def real_final():
                         har3.x = round(size[0] / 2 + 360 + har1.sx)
                         har3.y = round(size[1] / 2 - 350)
 
-                        heart_li.append(har1)
-                        heart_li.append(har2)
-                        heart_li.append(har3)
+                        nope = 0
+                        if len(heart_li) == 1:
+                            heart_li.append(har2)
+                            heart_li.append(har3)
+                        elif len(heart_li) == 2:
+                            heart_li.append(har3)
+
                         answer_circle.clear()
                         answer_circle2.clear()
                         answer_circle3.clear()
@@ -1096,7 +1101,6 @@ while st == 0:
                     heart_li.append(har2)
                     heart_li.append(har3)
                     answer_circle.clear()
-
 
             if tt == 0:
                 total_score.append(int(total_time - seconds))
