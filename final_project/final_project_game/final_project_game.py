@@ -36,7 +36,7 @@ mySound.set_volume(1.0)
 wr_sound.set_volume(1.0)
 
 
-col_spd = 3
+col_spd = 5
 col_dir = [1, 1, 1]
 def_col = [0, 0, 0]
 
@@ -115,6 +115,7 @@ def draw_text(font_name, text, size, color, x, y):
     screen.blit(text_surface, text_rect)
 
 
+
 # 게임시작화면
 def wait_for_key():
     waiting = True
@@ -134,10 +135,8 @@ def wait_for_key():
         draw_text("fonts/Galmuri11-Bold.ttf", "# 틀린그림찾기 #", 100, white, 300, 150)
         draw_text("fonts/Galmuri11.ttf", "~press any key~", 50, def_col, 470, 600)
         col_change(def_col, col_dir)
-
-        clock.tick()
+        clock.tick(60)
         pygame.display.update()
-
 
 def col_change(col, dir):
     for i in range(3):
@@ -177,7 +176,7 @@ def check_circle(new, answers):
 def fail_screen_show():
     global start_ticks
     waiting = True
-    pygame.mixer.music.pause()
+    pygame.mixer.music.stop()
     loser.play()
     while waiting:
         for event in pygame.event.get():
@@ -185,8 +184,8 @@ def fail_screen_show():
                 quitgame()
 
             screen.fill(black)
-            draw_text("fonts/Galmuri11-Bold.ttf", "ㅠ You Lose ㅠ", 100, white, 350, 200)  # (폰트크기,색상, x위치, y위치->반대로)
-            draw_text("fonts/Galmuri11.ttf", "again?", 50, (255,0,0), 200, 450)
+            draw_text("fonts/Galmuri11.ttf", "ㅠYou Loseㅠ", 100, white, 350, 200)  # (폰트크기,색상, x위치, y위치->반대로)
+            draw_text("fonts/Galmuri11.ttf", "again?", 50, white, 200, 450)
             yes = Obj()
             yes.put_img("image/yes.png")
             yes.change_size(210, 190)
@@ -214,7 +213,6 @@ def fail_screen_show():
                     if 640 - 150 < sor[0] < 640 + 150 and 480 - 60 < sor[1] < 480 + 60:
                         waiting = False
                         start_ticks = pygame.time.get_ticks()
-                        pygame.mixer.music.unpause()
 
             if 1000 - 150 < sor[0] < 1000 + 150 and 480 - 60 < sor[1] < 480 + 60:
                 no = Obj()
@@ -251,9 +249,10 @@ def success_screen_show():
             if event.type == pygame.MOUSEBUTTONUP:
                 waiting = False
             screen.fill(black)
-            draw_text("fonts/Galmuri11-Bold.ttf", "CLEAR!!", 180, (255, 204, 204) , 400, 180)
+            draw_text("fonts/Galmuri11-Bold.ttf", "CLEAR!!", 180, (255, 204, 204), 400, 180)
             draw_text("fonts/Galmuri11.ttf", "Next Level->", 50, white, 1000, 600)
             draw_text("fonts/Galmuri11.ttf", "Enter!", 50, (255,0,0), 1070, 530)
+
             homer = Obj()
             homer.put_img("image/homer.png")
             homer.change_size(400, 400)
@@ -278,6 +277,20 @@ def real_final():
             draw_text("fonts/Galmuri11.ttf", "CLEAR!!", 100, white, 500, 200)  # (폰트크기,색상, x위치, y위치->반대로)
             draw_text("fonts/Galmuri11.ttf", "your score :" + str(score), 80, white, 380, 400)
             draw_text("fonts/Galmuri11.ttf", "again?", 50, white, 200, 600)
+
+            con = Obj()
+            con.put_img("image/cong.png")
+            con.change_size(350, 350)
+            con.x = 100
+            con.y = 100
+            con.show()
+
+            con2 = Obj()
+            con2.put_img("image/cong.png")
+            con2.change_size(350, 350)
+            con2.x = 950
+            con2.y = 100
+            con2.show()
 
             yes = Obj()
             yes.put_img("image/yes.png")
@@ -342,6 +355,7 @@ def real_final():
             cou1.y = sor[1]
             cou1.show()
 
+        clock.tick(60)
         total_score.clear()
         pygame.display.flip()
 
@@ -1075,12 +1089,14 @@ while st == 0:
                     har3.x = round(size[0] / 2 + 360 + har1.sx)
                     har3.y = round(size[1] / 2 - 350)
                     total_time = 181
+
                     tt = 5
                     nope = 0
                     heart_li.append(har1)
                     heart_li.append(har2)
                     heart_li.append(har3)
                     answer_circle.clear()
+
 
             if tt == 0:
                 total_score.append(int(total_time - seconds))
