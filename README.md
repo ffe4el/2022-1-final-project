@@ -109,8 +109,9 @@ df_maker(10,10,"ㅋ")
 ```
 이를 통해 10행, 10열이고 내용이 ㅋ으로 구성된 표를 만들 수 있다.
 
-<br>
+<br><br>
 2. 행열의 사이즈를 정하고, 안에 내용을 수정해서 넣어 표 만들기
+
 ```py
 import pandas as pd
 col = [0, 0, 0]
@@ -123,7 +124,6 @@ print(df.index) #Int64Index([0, 0], dtype='int64')
 df.columns=["Temp", "RH", "Lux"]                                 #열제목
 df.index=["날짜1", "날짜2", "날짜3", "날짜4", "날짜5", "날짜6", "날짜7"]  #행제목
 print(df) #행열 출력
-
 
 print("-"*30)
 # 가로 방향 선택하는 방법
@@ -143,7 +143,9 @@ df.loc["날짜6"] = [20.5, 53, 2600]
 df.loc["날짜7"] = [20.2, 52.9, 2558]
 print(df)
 ```
+
 print(df)의 결과는 이렇게 나온다. 
+
 >            Temp   RH   Lux
 >     날짜1  20.2  52.9  2558
 >     날짜2  20.5  53.0  2600
@@ -153,7 +155,7 @@ print(df)의 결과는 이렇게 나온다.
 >     날짜6  20.5  53.0  2600
 >     날짜7  20.2  52.9  2558
 
-<br>
+<br><br>
 3. 이런식으로 행과 열의 정보만 수정할 수도 있다.
 ```py
 import pandas as pd
@@ -182,12 +184,12 @@ df.index = ind    # 인덱스 ind 리스트로 덮어씌움
 
 
 
-<br>
-<br>
-<br>
+<br><br><br><br>
 ### ➰*OpenPyXLl* 모듈
+
 ---
-####OpenPyXL이란? 
+
+#### OpenPyXL이란? 
 ![OpenPyXL Image](https://w3cschoool.com/public/file/Python/python-openpyxl-tutorial.png)
 OpenPyXL은 Excel 파일을 읽고 쓰기를 Python으로 할 수 있는 일종의 모듈이다. 
 예를 들어 아래와 같은 조작이 가능하다.
@@ -197,11 +199,12 @@ OpenPyXL은 Excel 파일을 읽고 쓰기를 Python으로 할 수 있는 일종�
 다만 이 모듈을 사용하기 위해서 주의해야할 점이 한 가지가 있는데 바로 확장자가 ".xlsx"여야한다는 것이다.
 <!-- Link -->
 [출처 Cliclk](https://engineer-mole.tistory.com/211)
-<br>
+<br><br>
 OpenPyXL모듈을 공부하면서 작성한 코드를 기록해보고자 한다.
-<br>
+<br><br>
 
 1. 새 워크시트 파일 열기
+
 ```py
 #open_file.py
 from openpyxl import load_workbook
@@ -220,6 +223,7 @@ wb.save('wb_insert.xlsx')     #엑셀 파일 저장하기
 ```
 
 2. 엑셀파일 만들기 
+
 ```py
 from openpyxl import Workbook
 wb = Workbook()
@@ -234,7 +238,9 @@ print(wb.sheetnames)
 
 wb.save('xb.xlsx')
 ```
+
 3. 엑셀 파일에 내용 수정하기
+
 ```py
 from openpyxl import Workbook
 import os ; os.remove("wb_subtitle.xlsx") 
@@ -252,7 +258,9 @@ for kwd, j in zip(sub, range(1, len(sub)+1)): #for zip을 이용해서 2번째 �
 
 wb.save("wb_subtitle.xlsx") #저장
 ```
+
 4. 구구단 입력 엑셀 파일 만들어보기
+
 ```py
 from openpyxl import Workbook
 
@@ -275,7 +283,9 @@ for row in range(1, 9):
 
 wb.save("wb_multiplication.xlsx")
 ```
+
 5. 엑셀파일에서 데이터 읽어오기
+
 ```py
 from openpyxl import load_workbook
 
@@ -332,15 +342,22 @@ for row in ws.iter_rows(min_row=1, max_col=3, values_only=True):
     for cell in row:
         print(cell)
 ```
+
 추가로 엑셀에서 범위 지정이 가능하다.
+
 특정 범위 접근 : cell_range = sheet['A1':'C2']
+
 특정 행 접근 : sheet[10]
+
 특정 행 범위 접근 : sheet[5:10]
+
 특정 열 접근 : sheet['C']
+
 특정 열 범위 접근 : sheet['C:D']
+
 파이썬의 2차원 배열 인덱싱 형식에 따라 : sheet[3][2]와 같이도 가능 (C열 = 3, 2행 =2)
 
-<br>
+<br><br>
 6. 엑셀 함수 사용하고 적용하기
 ```py
 #openpyxl의 단점은 pandas와 같이 쉽게 데이터를 불러오거나 저장하기 어렵다는 점
@@ -400,16 +417,13 @@ for row in range(1, len(sub)+1):
 
 wb.save("wb_mutiple_func.xlsx")
 ```
+
 OpenPyXL을 이용하여 엑셀에 있는 함수들까지 쓸 수 있기 때문에 이를 이용해서 환경데이터를 계산할 수 있다.
 
-<br>
-<br>
-<br>
-<br>
-<br>
+<br><br><br><br>
 ### ➰*Numpy* 라이브러리
 ---
-####Numpy란?
+#### Numpy란?
 ![Numpy Image](https://t1.daumcdn.net/cfile/tistory/993270495B18DDE322)
 Numpy는 C언어로 구현된 파이썬 라이브러리로써, 고성능의 수치계산을 위해 제작되었다. Numerical Python의 줄임말이기도 한 Numpy는 벡터 및 행렬 연산에 있어서 매우 편리한 기능을 제공한다.
 Numpy의 핵심이라고 불리는 다차원 행렬 자료구조인 ndarray를 통해 벡터 및 행렬을 사용하는 선형 대수 계산에서 주로 사용된다. Numpy는 편의성뿐만 아니라, 속도면에서도 순수 파이썬에 비해 압도적으로 빠르다는 장점이 있다.
@@ -418,8 +432,9 @@ Numpy의 핵심이라고 불리는 다차원 행렬 자료구조인 ndarray를 �
 Numpy 또한 리스트 배열을 통해 표형태를 만들 수 있지만 엑셀과의 호환성은 떨어진다.
 그렇기 때문에 Numpy는 학습만 하고 프로젝트에 응용하진 못했다.
 
-<br>
+<br><br>
 1. 리스트를 가지고 배열만들기
+
 ```py
 # 1차원 배열
 vec = np.array([1, 2, 3, 4, 5])
@@ -455,7 +470,9 @@ range_n_step_vec = np.arange(1, 10, n)
 #np.arange(i, j, k)는 i부터 j-1까지 k씩 증가하는 배열을 생성
 print(range_n_step_vec)
 ```
+
 2. Numpy 연산
+
 ```py
 x = np.array([1,2,3])
 y = np.array([4,5,6])
@@ -488,10 +505,12 @@ print(mat3)
 #   [43 50]]
 ```
 
-<br><br><br><br><br><br><br>
+<br><br><br><br>
 
 ### 구체적인 환경데이터 자동화 구현 방법
+
 ---
+
 ```py
 from openpyxl import load_workbook #엑셀 파일 열기
 import pandas as pd
@@ -587,9 +606,10 @@ wb.save('C:/Users/user/OneDrive/바탕 화면/data/원예작물재배및실습_{
 
 
 
-<br><br><br><br><br><br>
+<br><br><br><br>
 
-###느낀점과 아쉬운점😊
+### 느낀점과 아쉬운점😊
+
 ---
 OpenPyXL과 Pandas를 이용해서 환경 데이터를 정리해보니, 이젠 정말 엑셀만 다룰 줄 아는 사람은 뒤쳐지겠구나... 라는 생각이 들었다.
 다른 직장동료들은 Python을 이용해 엑셀 자동화를 시켜 빠르게 빠르게 일을 처리하는데...
@@ -602,7 +622,7 @@ OpenPyXL과 Pandas를 이용해서 환경 데이터를 정리해보니, 이젠 �
 한글 파일에서 보고서 형태로 데이터를 정리해 놓으면 그러한 데이터가 왜 나왔는지. 이러한 데이터가 어떤 의미를 가지는지에 대해서 설명할 수 있기때문에 읽은 사람에게로 하여금 이해하기 쉽게 풀어쓸  수 있다. 시간이 된다면 프로젝트 이후에 Python으로 한글파일 보고서를 쓰는 활동을 추가적으로 해보고싶다.
 
 
-####Pygame이란?
+#### Pygame이란?
 ![Pygame Image](https://camo.githubusercontent.com/1971c0a4f776fb5351c765c37e59630c83cabd52/68747470733a2f2f7777772e707967616d652e6f72672f696d616765732f6c6f676f2e706e67)
 Python으로 작성 가능한 게임 등의 멀티미디어 표현을 위한 라이브러리이다. SDL 기반이다. 
 오픈 소스이자 무료 도구이며, Python을 돌릴 수 있는 플랫폼이라면 어디서든 실행할 수 있다. 게임 개발 도구이지만 이미지 프로세스 또는 조이스틱 입력, 음악 재생 등의 기능만 떼어다 쓸 수도 있다.
