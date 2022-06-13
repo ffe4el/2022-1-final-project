@@ -650,7 +650,9 @@ OpenPyXL과 Pandas를 이용해서 환경 데이터를 정리해보니, 이젠 �
 Python으로 작성 가능한 게임 등의 멀티미디어 표현을 위한 라이브러리이고 SDL 기반이다. 
 
 오픈 소스이자 무료 도구이며, Python을 돌릴 수 있는 플랫폼이라면 어디서든 실행할 수 있다. 게임 개발 도구이지만 이미지 프로세스 또는 조이스틱 입력, 음악 재생 등의 기능만 떼어다 쓸 수도 있다.
+
 [출처 Cliclk](https://namu.wiki/w/Pygame)
+
 공식사이트에서 더욱 많은 정보들을 확인해볼 수 있다.
 [Pygame 공식사이트](https://www.pygame.org/news)
 
@@ -759,7 +761,7 @@ pb4.y = round(size[1] - pb.sy - 5)
 
 이 클래스를 만드는 것은 유튜브 영상(초보코딩)을 참고 하였다.
 
-[초보코딩 링크]("https://www.youtube.com/watch?v=9oIkFAZM7DY")
+[초보코딩 링크](https://www.youtube.com/watch?v=9oIkFAZM7DY)
 
 
 그 외에 전체적인 게임 이벤트가 마우스 클릭으로 발생하기 때문에
