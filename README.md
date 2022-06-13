@@ -185,7 +185,7 @@ df.index = ind    # 인덱스 ind 리스트로 덮어씌움
 
 
 <br><br><br><br>
-### ➰*OpenPyXLl* 모듈
+### ➰*OpenPyXL* 모듈
 
 ---
 
