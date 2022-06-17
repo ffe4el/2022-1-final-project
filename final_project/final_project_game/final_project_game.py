@@ -123,7 +123,7 @@ def wait_for_key():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quitgame()
-            if event.type == pygame.KEYUP:
+            if event.type == pygame.MOUSEBUTTONUP:
                 waiting = False
         screen.fill(black)
         retro = Obj()
@@ -176,7 +176,7 @@ def check_circle(new, answers):
 def fail_screen_show():
     global start_ticks
     waiting = True
-    pygame.mixer.music.stop()
+    pygame.mixer.music.pause()
     loser.play()
     while waiting:
         for event in pygame.event.get():
@@ -212,6 +212,7 @@ def fail_screen_show():
                 if event.type == pygame.MOUSEBUTTONUP:
                     if 640 - 150 < sor[0] < 640 + 150 and 480 - 60 < sor[1] < 480 + 60:
                         waiting = False
+                        pygame.mixer.music.unpause()
                         start_ticks = pygame.time.get_ticks()
 
             if 1000 - 150 < sor[0] < 1000 + 150 and 480 - 60 < sor[1] < 480 + 60:
