@@ -123,7 +123,7 @@ def wait_for_key():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quitgame()
-            if event.type == pygame.MOUSEBUTTONUP:
+            if event.type == pygame.KEYUP:
                 waiting = False
         screen.fill(black)
         retro = Obj()
