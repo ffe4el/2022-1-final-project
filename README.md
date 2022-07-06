@@ -91,6 +91,7 @@ pandas라이브러리를 공부하며 정리해둔 코드를 기록해보려고 
 1. pandas DataFrame을 이용해서 표 만들기
 <!-- Code -->
 ```py
+
 import pandas as pd
 def df_maker(col_num, ind_num, fill):
     col = []
@@ -107,6 +108,7 @@ def df_maker(col_num, ind_num, fill):
     return print(df)
 
 df_maker(10,10,"ㅋ")
+
 ```
 이를 통해 10행, 10열이고 내용이 ㅋ으로 구성된 표를 만들 수 있다.
 
